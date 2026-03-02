@@ -1,5 +1,4 @@
 /I "."
-/I "C:/Users/h018562m/Documents/Unreal Projects/Team24Project/Intermediate/Build/Win64/UnrealEditor/Inc/Team24Project/UHT"
 /I "C:/Users/h018562m/Documents/Unreal Projects/Team24Project/Source"
 /I "Runtime/Core/Public"
 /I "Runtime/TraceLog/Public"

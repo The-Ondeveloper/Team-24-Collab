@@ -1,8 +1,8 @@
 {
 	"SourceFiles": [
-		"C:\\Users\\h018562m\\Documents\\Unreal Projects\\Team24Project\\Source\\Team24Project\\Team24Project.Build.cs",
-		"C:\\Users\\h018562m\\Documents\\Unreal Projects\\Team24Project\\Source\\Team24Project.Target.cs",
-		"C:\\Users\\h018562m\\Documents\\Unreal Projects\\Team24Project\\Source\\Team24ProjectEditor.Target.cs"
+		"C:\\Users\\Connah\\Documents\\GitHub\\Team-24-Collab\\Team24Project\\Source\\Team24Project\\Team24Project.Build.cs",
+		"C:\\Users\\Connah\\Documents\\GitHub\\Team-24-Collab\\Team24Project\\Source\\Team24Project.Target.cs",
+		"C:\\Users\\Connah\\Documents\\GitHub\\Team-24-Collab\\Team24Project\\Source\\Team24ProjectEditor.Target.cs"
 	],
 	"EngineVersion": "5.6.1"
 }
