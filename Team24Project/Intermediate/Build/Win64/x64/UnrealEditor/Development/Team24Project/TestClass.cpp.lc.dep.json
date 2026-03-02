@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\h018562m\\documents\\unreal projects\\team24project\\source\\team24project\\testclass.cpp",
+        "ProvidedModule": "",
+        "PCH": "c:\\users\\h018562m\\documents\\unreal projects\\team24project\\intermediate\\build\\win64\\x64\\team24projecteditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "Includes": [
+            "c:\\users\\h018562m\\documents\\unreal projects\\team24project\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\team24project\\definitions.team24project.h",
+            "c:\\users\\h018562m\\documents\\unreal projects\\team24project\\source\\team24project\\testclass.h",
+            "c:\\users\\h018562m\\documents\\unreal projects\\team24project\\intermediate\\build\\win64\\unrealeditor\\inc\\team24project\\uht\\testclass.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

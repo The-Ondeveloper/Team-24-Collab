@@ -1,0 +1,9 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.Team24Project.gen.cpp.obj": [
+			"Team24Project.init.gen.cpp.obj",
+			"TestClass.gen.cpp.obj"
+		]
+	}
+}
