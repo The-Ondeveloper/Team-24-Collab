@@ -19,6 +19,7 @@ public:
 
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(EditInstanceOnly)
 	bool bTriggersOnlyOnce = false;
 	
 protected:
