@@ -20,7 +20,7 @@ void AEndZone::BeginPlay()
 	
 }
 
-void AEndZone::CheckpointActivated_Implementation()
+void AEndZone::CheckpointActivated_Implementation(AActor* OverlappedActor)
 {
 	if (ABaseGameMode* Gamemode = Cast<ABaseGameMode>(GetWorld()->GetAuthGameMode()))
 	{
@@ -28,7 +28,7 @@ void AEndZone::CheckpointActivated_Implementation()
 		UE_LOG(LogTemp, Warning, TEXT("Level changed"));
 	}
 	
-	Super::CheckpointActivated_Implementation();
+	Super::CheckpointActivated_Implementation(OverlappedActor);
 }
 
 // Called every frame

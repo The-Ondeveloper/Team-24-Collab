@@ -21,6 +21,9 @@ public:
 
 	UPROPERTY(EditInstanceOnly)
 	bool bTriggersOnlyOnce = false;
+
+	UPROPERTY(EditInstanceOnly)
+	bool bPlayerOnly = false;
 	
 protected:
 	// Called when the game starts or when spawned
@@ -30,7 +33,7 @@ protected:
 	TObjectPtr<UCollider> Collider;
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Checkpoint")
-	void CheckpointActivated();
+	void CheckpointActivated(AActor* OverlappedActor);
 	
 private:
 
