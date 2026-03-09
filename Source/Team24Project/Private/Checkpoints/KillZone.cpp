@@ -21,13 +21,12 @@ void AKillZone::BeginPlay()
 }
 
 void AKillZone::CheckpointActivated_Implementation(AActor* OverlappedActor)
-{
-	if (bPlayerOnly && OverlappedActor->ActorHasTag("Player"))
+{	
+	if (bPlayerOnly)
 	{
-		if (ABaseGameMode* Gamemode = Cast<ABaseGameMode>(GetWorld()->GetAuthGameMode()))
-		{		
-			Gamemode->RespawnPlayer();
-			UE_LOG(LogTemp, Warning, TEXT("Killed Player"));
+		if (OverlappedActor->ActorHasTag("Player"))
+		{
+			UGameplayStatics::ApplyDamage(OverlappedActor, 10000, nullptr, this, nullptr);
 		}
 	}
 	else
