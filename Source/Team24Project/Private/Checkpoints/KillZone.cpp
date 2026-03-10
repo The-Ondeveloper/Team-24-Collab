@@ -4,6 +4,7 @@
 #include "Checkpoints/KillZone.h"
 
 #include "GameModes/BaseGameMode.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -17,18 +18,23 @@ AKillZone::AKillZone()
 void AKillZone::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
-void AKillZone::CheckpointActivated_Implementation()
-{
-	if (ABaseGameMode* Gamemode = Cast<ABaseGameMode>(GetWorld()->GetAuthGameMode()))
+void AKillZone::CheckpointActivated_Implementation(AActor* OverlappedActor)
+{	
+	if (bPlayerOnly)
 	{
-		Gamemode->RespawnPlayer();
-		UE_LOG(LogTemp, Warning, TEXT("KilledPlayer"));
+		if (OverlappedActor->ActorHasTag("Player"))
+		{
+			UGameplayStatics::ApplyDamage(OverlappedActor, 10000, nullptr, this, nullptr);
+		}
+	}
+	else
+	{
+		UGameplayStatics::ApplyDamage(OverlappedActor, 10000, nullptr, this, nullptr);
 	}
 	
-	Super::CheckpointActivated_Implementation();
+	Super::CheckpointActivated_Implementation(OverlappedActor);
 }
 
 // Called every frame

@@ -19,7 +19,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	virtual void CheckpointActivated_Implementation() override;
+	virtual void CheckpointActivated_Implementation(AActor* OverlappedActor) override;
 
 public:
 	// Called every frame

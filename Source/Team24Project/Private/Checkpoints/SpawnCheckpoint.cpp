@@ -22,7 +22,7 @@ void ASpawnCheckpoint::BeginPlay()
 	
 }
 
-void ASpawnCheckpoint::CheckpointActivated_Implementation()
+void ASpawnCheckpoint::CheckpointActivated_Implementation(AActor* OverlappedActor)
 {
 	ACharacter* player = UGameplayStatics::GetPlayerCharacter(this, 0);
 	FRotator playerRot = prevPlayerRot;
@@ -39,7 +39,7 @@ void ASpawnCheckpoint::CheckpointActivated_Implementation()
 		UE_LOG(LogTemp, Warning, TEXT("Updated Spawn"));
 	}
 	
-	Super::CheckpointActivated_Implementation();
+	Super::CheckpointActivated_Implementation(OverlappedActor);
 }
 
 // Called every frame

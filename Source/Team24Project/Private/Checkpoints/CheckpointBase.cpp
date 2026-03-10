@@ -25,18 +25,19 @@ void ACheckpointBase::BeginPlay()
 	
 }
 
-void ACheckpointBase::CheckpointActivated_Implementation()
+
+void ACheckpointBase::CheckpointActivated_Implementation(AActor* OverlappedActor)
 {
 }
 
 void ACheckpointBase::OnColliderTrigger(AActor* OverlappedActor)
-{
-	if (!OverlappedActor->ActorHasTag("Player")) return;
+{	
+	if (!OverlappedActor->ActorHasTag("Player") && bPlayerOnly) return;
 
 	if (bTriggersOnlyOnce && bHasTriggered) return;
 
 	bHasTriggered = true;
-	CheckpointActivated();
+	CheckpointActivated(OverlappedActor);
 }
 
 // Called every frame
