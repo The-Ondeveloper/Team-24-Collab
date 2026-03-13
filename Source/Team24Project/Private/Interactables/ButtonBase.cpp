@@ -4,6 +4,7 @@
 #include "Interactables/ButtonBase.h"
 
 #include "Components/Collider.h"
+#include "Interfaces/Triggerable.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetSystemLibrary.h"
 
@@ -47,9 +48,30 @@ void AButtonBase::Tick(float DeltaTime)
 
 void AButtonBase::Interact_Implementation()
 {
-	IInteractable::Interact_Implementation();
-
 	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("Button pressed")));
+
+	if (bInteracted)
+	{
+		bInteracted = false;
+		//play toggle-off sound
+	}
+	else
+	{
+		bInteracted = true;
+		//play toggle on sound
+	}
+
+	if (TriggerTargets.Num() <= 0) return;
+
+	for (auto target : TriggerTargets)
+	{
+		if (UKismetSystemLibrary::DoesImplementInterface(target, UTriggerable::StaticClass()))
+		{
+			ITriggerable::Execute_OnTrigger(target);
+		}
+	}
+
+	IInteractable::Interact_Implementation();
 }
 
 //TODO: Replace this whole thing with actual code calls when player character has been translated into c++

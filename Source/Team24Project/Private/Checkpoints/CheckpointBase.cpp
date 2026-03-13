@@ -15,6 +15,7 @@ ACheckpointBase::ACheckpointBase()
 	Collider = CreateDefaultSubobject<UCollider>("Collider");
 	SetRootComponent(Collider);
 	Collider->OnActorEnterOverlap.AddUniqueDynamic(this, &ACheckpointBase::OnColliderTrigger);
+	Collider->OnActorExitOverlap.AddUniqueDynamic(this, &ACheckpointBase::CheckpointDeactivated);
 
 }
 
@@ -25,9 +26,14 @@ void ACheckpointBase::BeginPlay()
 	
 }
 
-
 void ACheckpointBase::CheckpointActivated_Implementation(AActor* OverlappedActor)
 {
+	if (OnCheckPointActivated.IsBound()) OnCheckPointActivated.Broadcast();
+}
+
+void ACheckpointBase::CheckpointDeactivated_Implementation(AActor* OverlappedActor)
+{
+	if (OnCheckPointDeactivated.IsBound()) OnCheckPointDeactivated.Broadcast();
 }
 
 void ACheckpointBase::OnColliderTrigger(AActor* OverlappedActor)

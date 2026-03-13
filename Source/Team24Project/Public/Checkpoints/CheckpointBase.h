@@ -8,6 +8,9 @@
 
 class UCollider;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnCheckPointActivated);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnCheckPointDeactivated);
+
 UCLASS()
 class TEAM24PROJECT_API ACheckpointBase : public AActor
 {
@@ -24,6 +27,12 @@ public:
 
 	UPROPERTY(EditInstanceOnly)
 	bool bPlayerOnly = false;
+
+	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	FOnCheckPointActivated OnCheckPointActivated;
+
+	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	FOnCheckPointDeactivated OnCheckPointDeactivated;
 	
 protected:
 	// Called when the game starts or when spawned
@@ -34,6 +43,9 @@ protected:
 
 	UFUNCTION(BlueprintNativeEvent, Category = "Checkpoint")
 	void CheckpointActivated(AActor* OverlappedActor);
+
+	UFUNCTION(BlueprintNativeEvent, Category = "Checkpoint")
+	void CheckpointDeactivated(AActor* OverlappedActor);
 	
 private:
 

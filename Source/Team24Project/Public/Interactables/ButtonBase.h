@@ -38,4 +38,10 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void Interact_Implementation() override;
+
+	UPROPERTY(EditInstanceOnly, Category = "Trigger Data")
+	TArray<AActor*> TriggerTargets;
+	
+	UPROPERTY(BlueprintReadWrite, Category = "Trigger Data")
+	bool bInteracted = false;
 };
