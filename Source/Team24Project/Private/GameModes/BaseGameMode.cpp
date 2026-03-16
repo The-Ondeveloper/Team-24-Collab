@@ -20,6 +20,15 @@ void ABaseGameMode::BeginPlay()
 
 	UGameplayStatics::GetAllActorsOfClass(this, APlayerStart::StaticClass(), StartArray);
 
+	if (StartArray.Num() >= 0)
+	{
+		bFoundPlayerStart = false;
+		return;
+	}
+
+	bFoundPlayerStart = true;
+	
+	
 	PlayerStart = Cast<APlayerStart>(StartArray.Last());
 	PlayerStart->GetRootComponent()->SetMobility(EComponentMobility::Movable);
 	
@@ -51,6 +60,8 @@ void ABaseGameMode::RespawnPlayer()
 
 void ABaseGameMode::UpdatePlayerSpawn(FVector NewLocation, FRotator NewRotation)
 {
+	if (!bFoundPlayerStart) return;
+	
 	SpawnLocation = NewLocation;
 	SpawnRotation = NewRotation;
 
