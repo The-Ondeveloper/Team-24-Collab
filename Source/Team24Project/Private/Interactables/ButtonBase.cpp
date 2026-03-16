@@ -14,30 +14,12 @@ AButtonBase::AButtonBase()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
-	Collider = CreateDefaultSubobject<UCollider>("Collider");
-	SetRootComponent(Collider);
-
-	Collider->bEditableWhenInherited = true;
 }
 
 // Called when the game starts or when spawned
 void AButtonBase::BeginPlay()
 {
 	Super::BeginPlay();
-}
-
-void AButtonBase::PostInitializeComponents()
-{
-	Super::PostInitializeComponents();
-	if (Collider)
-	{
-		Collider->OnActorEnterOverlap.RemoveDynamic(this, &ThisClass::OnButtonBeginOverlap);
-		Collider->OnActorEnterOverlap.AddDynamic(this, &ThisClass::OnButtonBeginOverlap);
-		
-		Collider->OnActorExitOverlap.RemoveDynamic(this, &ThisClass::OnButtonEndOverlap);
-		Collider->OnActorExitOverlap.AddDynamic(this, &ThisClass::OnButtonEndOverlap);
-	}
 }
 
 // Called every frame
@@ -72,53 +54,5 @@ void AButtonBase::Interact_Implementation()
 	}
 
 	IInteractable::Interact_Implementation();
-}
-
-//TODO: Replace this whole thing with actual code calls when player character has been translated into c++
-void AButtonBase::OnButtonBeginOverlap(AActor* OverlappedActor)
-{
-	APlayerController* PC = GetWorld()->GetFirstPlayerController();
-
-	if (PC)
-	{
-		UFunction* Func = PC->FindFunction(TEXT("AddNewInteractable"));
-
-		if (Func)
-		{
-			struct FAddInteractableParams
-			{
-				AActor* Actor;
-			};
-
-			FAddInteractableParams Params;
-			Params.Actor = this;
-		
-			PC->ProcessEvent(Func, &Params);
-		}
-	}
-}
-
-//TODO: Replace this whole thing with actual code calls when player character has been translated into c++
-void AButtonBase::OnButtonEndOverlap(AActor* OtherActor)
-{
-	APlayerController* PC = GetWorld()->GetFirstPlayerController();
-
-	if (PC)
-	{
-		UFunction* Func = PC->FindFunction(TEXT("RemoveInteractable"));
-
-		if (Func)
-		{
-			struct FAddInteractableParams
-			{
-				AActor* Actor;
-			};
-
-			FAddInteractableParams Params;
-			Params.Actor = this;
-		
-			PC->ProcessEvent(Func, &Params);
-		}
-	}
 }
 
