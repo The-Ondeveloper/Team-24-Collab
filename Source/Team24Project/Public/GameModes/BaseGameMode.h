@@ -60,6 +60,9 @@ private:
 
 	UPROPERTY()
 	APlayerStart* PlayerStart;
+
+	UPROPERTY()
+	bool bFoundPlayerStart = false;
 	
 protected:
 
