@@ -59,7 +59,7 @@ private:
 	void LoadLevel(TSoftObjectPtr<UWorld> NewLevel);
 
 	UPROPERTY()
-	APlayerStart* PlayerStart;
+	TObjectPtr<APlayerStart> PlayerStart;
 
 	UPROPERTY()
 	bool bFoundPlayerStart = false;
