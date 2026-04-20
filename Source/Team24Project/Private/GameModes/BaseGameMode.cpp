@@ -20,9 +20,10 @@ void ABaseGameMode::BeginPlay()
 
 	UGameplayStatics::GetAllActorsOfClass(this, APlayerStart::StaticClass(), StartArray);
 
-	if (StartArray.Num() >= 0)
+	if (StartArray.Num() <= 0)
 	{
 		bFoundPlayerStart = false;
+		UE_LOG(LogTemp, Warning, TEXT("early return"));
 		return;
 	}
 
@@ -34,6 +35,8 @@ void ABaseGameMode::BeginPlay()
 	
 	SpawnLocation = PlayerStart->GetActorLocation();
 	SpawnRotation = PlayerStart->GetActorRotation();
+
+	UE_LOG(LogTemp, Warning, TEXT("got this far"));
 }
 
 void ABaseGameMode::ChangeLevel_Implementation(const TSoftObjectPtr<UWorld>& NewLevel)
