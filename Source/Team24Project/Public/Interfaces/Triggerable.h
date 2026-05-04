@@ -27,4 +27,6 @@ public:
 	void OnTrigger();
 
 	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void OnUnTrigger();
 };
