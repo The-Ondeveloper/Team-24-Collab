@@ -52,14 +52,17 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Gamemode")
 	void DestroyPlayer();
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Gamemode")
+	void ResetPlayer();
+
+	UPROPERTY(BlueprintReadOnly, Category = "Gamemode")
+	TObjectPtr<APlayerStart> PlayerStart;
 	
 private:
 	
 	UFUNCTION(BlueprintCallable, Category = "Gamemode")
 	void LoadLevel(TSoftObjectPtr<UWorld> NewLevel);
-
-	UPROPERTY()
-	TObjectPtr<APlayerStart> PlayerStart;
 
 	UPROPERTY()
 	bool bFoundPlayerStart = false;
