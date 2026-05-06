@@ -31,4 +31,18 @@ public:
 
 	UPROPERTY(EditInstanceOnly, Category = "Trigger Data")
 	TArray<AActor*> TriggerTargets;
+
+	UPROPERTY(EditInstanceOnly, Category = "Trigger Data")
+	bool bToggleTriggers = false;
+
+	UPROPERTY(EditInstanceOnly, Category = "Trigger Data")
+	bool bStartTriggered = false;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Sound Data")
+	TObjectPtr<USoundBase> TriggerSound;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Sound Data")
+	TObjectPtr<USoundBase> UnTriggerSound;
+
+
 };

@@ -14,12 +14,18 @@ AButtonBase::AButtonBase()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	TriggerSound = CreateDefaultSubobject<USoundBase>("Trigger Sound Effect");
+	UnTriggerSound = CreateDefaultSubobject<USoundBase>("UnTrigger Sound Effect");
 }
 
 // Called when the game starts or when spawned
 void AButtonBase::BeginPlay()
 {
 	Super::BeginPlay();
+
+	if (bToggleTriggers)
+		bInteracted = bStartTriggered;
 }
 
 // Called every frame
@@ -30,17 +36,17 @@ void AButtonBase::Tick(float DeltaTime)
 
 void AButtonBase::Interact_Implementation()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("Button pressed")));
+	
 
-	if (bInteracted)
+	if (bInteracted && bToggleTriggers)
 	{
 		bInteracted = false;
-		//play toggle-off sound
+		UGameplayStatics::PlaySoundAtLocation(this, UnTriggerSound, GetActorLocation());
 	}
 	else
 	{
 		bInteracted = true;
-		//play toggle on sound
+		UGameplayStatics::PlaySoundAtLocation(this, TriggerSound, GetActorLocation());
 	}
 
 	if (TriggerTargets.Num() <= 0) return;
@@ -49,7 +55,16 @@ void AButtonBase::Interact_Implementation()
 	{
 		if (UKismetSystemLibrary::DoesImplementInterface(target, UTriggerable::StaticClass()))
 		{
-			ITriggerable::Execute_OnTrigger(target);
+			if (bInteracted)
+			{
+				ITriggerable::Execute_OnTrigger(target);
+				GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("triggered")));
+			}
+			else
+			{
+				ITriggerable::Execute_OnUnTrigger(target);
+				GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("Untriggered")));
+			}
 		}
 	}
 
