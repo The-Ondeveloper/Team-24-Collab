@@ -51,9 +51,11 @@ void ABaseGameMode::ChangeLevel_Implementation(const TSoftObjectPtr<UWorld>& New
 
 void ABaseGameMode::RespawnPlayer()
 {
-	DestroyPlayer();
+	//DestroyPlayer();
 	
-	HandleStartingNewPlayer(UGameplayStatics::GetPlayerController(this, 0));
+	//HandleStartingNewPlayer(UGameplayStatics::GetPlayerController(this, 0));
+
+	ResetPlayer();
 
 	if (OnPlayerSpawn.IsBound())
 	{
@@ -87,6 +89,10 @@ void ABaseGameMode::DestroyPlayer()
 	{
 		OnPlayerDeath.Broadcast();
 	}
+}
+
+void ABaseGameMode::ResetPlayer_Implementation()
+{
 }
 
 void ABaseGameMode::LoadLevel(TSoftObjectPtr<UWorld> NewLevel)
