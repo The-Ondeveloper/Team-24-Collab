@@ -19,6 +19,7 @@ ABaseInteractable::ABaseInteractable()
 
 	Collider = CreateDefaultSubobject<UCollider>("Collider");
 	SetRootComponent(Collider);
+	Collider->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	Collider->bEditableWhenInherited = true;
 }
@@ -32,7 +33,7 @@ void ABaseInteractable::BeginPlay()
 
 void ABaseInteractable::OnInteractableBeginOverlap(AActor* OverlappedActor)
 {
-	APlayerController* PC = GetWorld()->GetFirstPlayerController();
+	/*APlayerController* PC = GetWorld()->GetFirstPlayerController();
 
 	if (PC)
 	{
@@ -50,12 +51,12 @@ void ABaseInteractable::OnInteractableBeginOverlap(AActor* OverlappedActor)
 		
 			PC->ProcessEvent(Func, &Params);
 		}
-	}
+	}*/
 }
 
 void ABaseInteractable::OnInteractableEndOverlap(AActor* OtherActor)
 {
-	APlayerController* PC = GetWorld()->GetFirstPlayerController();
+	/*APlayerController* PC = GetWorld()->GetFirstPlayerController();
 
 	if (PC)
 	{
@@ -73,7 +74,7 @@ void ABaseInteractable::OnInteractableEndOverlap(AActor* OtherActor)
 		
 			PC->ProcessEvent(Func, &Params);
 		}
-	}
+	}*/
 }
 
 void ABaseInteractable::PostInitializeComponents()
