@@ -10,6 +10,8 @@
  * 
  */
 
+class APlayerStart;
+
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnChangeLevel, TSoftObjectPtr<UWorld>, NewLevel);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnPlayerSpawn);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnPlayerDeath);
