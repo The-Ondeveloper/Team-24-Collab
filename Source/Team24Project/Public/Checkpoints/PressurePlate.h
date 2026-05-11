@@ -32,5 +32,10 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Trigger Data")
 	bool bTriggered;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Sound Data")
+	TObjectPtr<USoundBase> OnSound;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Sound Data")
+	TObjectPtr<USoundBase> OffSound;
 	
 };

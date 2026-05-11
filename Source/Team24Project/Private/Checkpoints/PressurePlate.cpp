@@ -5,6 +5,7 @@
 
 #include "Interfaces/Triggerable.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include <Kismet/GameplayStatics.h>
 
 
 // Sets default values
@@ -12,6 +13,9 @@ APressurePlate::APressurePlate()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	OnSound = CreateDefaultSubobject<USoundBase>("On Sound");
+	OffSound = CreateDefaultSubobject<USoundBase>("Off Sound");
 }
 
 // Called when the game starts or when spawned
@@ -40,6 +44,8 @@ void APressurePlate::CheckpointActivated_Implementation(AActor* OverlappedActor)
 		if (UKismetSystemLibrary::DoesImplementInterface(target, UTriggerable::StaticClass()))
 		{
 			ITriggerable::Execute_OnTrigger(target);
+
+			UGameplayStatics::PlaySoundAtLocation(this, OnSound, GetActorLocation());
 		}
 	}
 	
